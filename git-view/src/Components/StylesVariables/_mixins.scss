@@ -1,0 +1,32 @@
+//linking dependencies
+@use './variables' as *;
+@use './typography' as *;
+
+//Size rules:
+
+//tablet rules
+@mixin tablet {
+  @media (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+//desktop rules
+@mixin desktop {
+  @media (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+//content width vw
+@mixin maximum-content-width {
+  width: 90vw;
+
+  @include tablet {
+    width: 93.75vw;
+  }
+
+  @include desktop {
+    width: 1080px;
+  }
+}

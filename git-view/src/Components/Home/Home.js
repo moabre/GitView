@@ -1,4 +1,8 @@
 import React, { useState } from 'react'
+import Particles from 'react-tsparticles'
+import ParticleOptions from './ParticleOptions'
+import './Home.scss'
+import logo from '../../Assets/logo.svg'
 
 function Home() {
   const [user, setUser] = useState('')
@@ -10,11 +14,23 @@ function Home() {
     window.location.href = `/user/${user}`
   }
   return (
-    <main>
-      <form onSubmit={(e) => submission(e)}>
-        <label htmlFor='username'>Git your stats</label>
-        <input type='username' type='text' onChange={userInput} />
-      </form>
+    <main className='front'>
+      <Particles id='tsparticles' options={ParticleOptions} />
+      <img src={logo} alt='github logo' className='logo' />
+      <div className='home'>
+        <form onSubmit={(e) => submission(e)} className='homeform'>
+          <label htmlFor='username' className='homeform__label'>
+            Find Git Stats
+          </label>
+          <input
+            type='username'
+            type='text'
+            onChange={userInput}
+            className='homeform__input'
+            placeholder='Enter Username'
+          />
+        </form>
+      </div>
     </main>
   )
 }

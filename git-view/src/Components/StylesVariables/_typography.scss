@@ -1,0 +1,19 @@
+//Import the project
+@import 'node_modules/sass-google-fonts/src/GoogleFonts.scss';
+
+//importing fonts
+@include google-font('Inter');
+
+//Creating Header Font Size for mobile
+@mixin mH1 {
+  font-family: 'Inter';
+  font-size: 28px;
+  line-height: 36px;
+}
+//Creating Header Font Size for tablet/desktop
+
+@mixin tdH1 {
+  font-family: 'Inter';
+  font-size: 32px;
+  line-height: 40px;
+}

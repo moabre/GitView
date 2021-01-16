@@ -8,9 +8,12 @@
     "@testing-library/user-event": "^12.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-particles-js": "^3.4.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-tsparticles": "^1.18.11",
     "sass": "^1.32.4",
+    "sass-google-fonts": "^1.0.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
