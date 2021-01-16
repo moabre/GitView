@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Particles from 'react-tsparticles'
 import ParticleOptions from './ParticleOptions'
 import './Home.scss'
-import logo from '../../Assets/logo.svg'
+import logo from '../../Assets/Mark.svg'
 
 function Home() {
   const [user, setUser] = useState('')
