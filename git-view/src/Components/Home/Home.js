@@ -23,7 +23,6 @@ function Home() {
             Find Git Stats
           </label>
           <input
-            type='username'
             type='text'
             onChange={userInput}
             className='homeform__input'

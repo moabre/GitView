@@ -2,9 +2,8 @@
 @use '../StylesVariables/variables' as *;
 @use '../StylesVariables/typography' as *;
 @use '../StylesVariables/mixins' as *;
-//Setting margin and padding to zero
+//Setting padding to zero
 * {
-  margin: 0px;
   padding: 0px;
   box-sizing: border-box;
 }

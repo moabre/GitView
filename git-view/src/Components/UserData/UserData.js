@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import GhPolyGlot from 'gh-polyglot'
+import UserInfo from './UserComponents/UserInfo'
+import Charts from './UserComponents/Charts'
 
 function UserData() {
   //setting up the state values
-  const { user } = useParams()
+  const { id } = useParams()
   const [userData, setUserData] = useState(null)
   const [languageData, setLanguageData] = useState(null)
   const [repoData, setRepoData] = useState(null)
@@ -13,7 +15,42 @@ function UserData() {
 
   // using git api to get user info
   const getUserInfo = () => {
-    fetch(`https://api.github.com/users/${user}`)
+    fetch(`https://api.github.com/users/${id}`)
+      .then((res) => {
+        if (res.status === 403) {
+          return setError({ active: true, type: 403 })
+        }
+        if (res.status === 404) {
+          return setError({ active: true, type: 404 })
+        } else {
+          return res.json()
+        }
+      })
+      .then((json) => {
+        setUserData(json)
+      })
+      .catch((err) => {
+        setError({
+          active: true,
+          type: 400,
+        })
+      })
+  }
+  // using GhPolyglot to get the language details of a user
+  const getLanguageInfo = () => {
+    const lang = new GhPolyGlot(`${id}`)
+    lang.userStats((error, response) => {
+      if (error) {
+        setError({ active: true, type: 400 })
+      }
+      setLanguageData(response)
+    })
+  }
+
+  // Using git api to get repo infomation
+
+  const getRepoInfo = () => {
+    fetch(`https://api.github.com/users/${id}/repos?per_page=100`)
       .then((res) => {
         if (res.status === 403) {
           return setError({ active: true, type: 403 })
@@ -23,16 +60,26 @@ function UserData() {
         }
         return res.json()
       })
-      .then((json) => setUserData(json))
+      .then((json) => setRepoData(json))
       .catch((err) => {
-        setError({
-          active: true,
-          type: 400,
-        })
+        setError({ active: true, type: 200 })
       })
   }
 
-  return <div>id : {id}</div>
+  useEffect(() => {
+    getUserInfo()
+    getRepoInfo()
+    getLanguageInfo()
+  }, [])
+
+  return (
+    <main>
+      {/* <UserInfo userData={userData} /> */}
+      {languageData && repoData && (
+        <Charts langData={languageData} repoData={repoData} />
+      )}
+    </main>
+  )
 }
 
 export default UserData
