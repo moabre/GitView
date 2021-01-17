@@ -1,5 +1,5 @@
 import Chart from 'chart.js'
-import FontColors from '../../Utils/FontColors'
+import { FontColors } from '../../Utils'
 const { fonts } = FontColors
 
 const buildAxes = (scale) => {
@@ -25,6 +25,54 @@ const buildAxes = (scale) => {
 
   return scale ? axes : null
 }
-const ConstructCharts = (config) => {}
+
+const buildLegend = (legend) => {
+  const laagend = {
+    position: 'right',
+    labels: {
+      fontFamily: fonts.inter,
+    },
+  }
+
+  return legend ? laagend : null
+}
+
+const ConstructCharts = (config) => {
+  const {
+    ctx,
+    chartType,
+    labels,
+    data,
+    backgroundColor,
+    borderColor,
+    scale,
+    legend,
+  } = config
+  return new Chart(ctx, {
+    type: chartType,
+    responsive: true,
+    maintainAspectRati: false,
+    data: {
+      labels,
+      datasets: [
+        {
+          data,
+          backgroundColor,
+          borderColor,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: buildAxes(scale),
+      legend: buildLegend(legend),
+      tooltips: {
+        titleFontFamily: fonts.inter,
+        bodyFontFamily: fonts.inter,
+        cornerRadius: 3,
+      },
+    },
+  })
+}
 
 export default ConstructCharts
