@@ -74,7 +74,7 @@ function UserData() {
 
   return (
     <main>
-      {/* <UserInfo userData={userData} /> */}
+      <UserInfo userData={userData} />
       {languageData && repoData && (
         <Charts langData={languageData} repoData={repoData} />
       )}

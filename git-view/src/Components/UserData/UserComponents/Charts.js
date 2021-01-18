@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react'
 import ConstructCharts from '../UserComponents/ConstructChart'
 import { languageColors, backgroundColor, borderColor } from '../../Utils'
 import { RepoIcon } from '@primer/octicons-react'
+import './styles/Charts.scss'
 
 function Charts({ langData, repoData }) {
-  console.log(langData)
-  console.log(repoData)
-
   //Creating the most star chart block of code
 
   //creating state to check for errors
@@ -92,7 +90,7 @@ function Charts({ langData, repoData }) {
 
   //function to render the most stared language piechart
   const starLang = () => {
-    const cxt = document.getElementById('starLangChart')
+    const ctx = document.getElementById('starLangChart')
     // getting own repos and starred
     const filteredRepo = repoData.filter(
       (repo) => !repo.fork && repo.stargazers_count > 0
@@ -113,18 +111,76 @@ function Charts({ langData, repoData }) {
       //return value
       return starSum
     })
+    setStarLangData(data)
 
-    console.log(labels)
-    console.log(data)
+    if (data.length > 0) {
+      const chartType = 'doughnut'
+      const scale = false
+      const legend = true
+      // get colors for each of the languages
+      const borderColor = labels.map((l) => languageColors[l])
+      // change color values to alpha hex with 70%
+      const backgroundColor = borderColor.map((color) => `${color}B3`)
+      const config = {
+        ctx,
+        chartType,
+        data,
+        labels,
+        scale,
+        legend,
+        borderColor,
+        backgroundColor,
+      }
+      ConstructCharts(config)
+    }
   }
+  // chartsize and error boolean
+  const chartSize = 300
+  const languageError = !(chartLangData && chartLangData.length > 0)
+  const starError = !(starData && starData.length > 0)
+  const starLangError = !(starLangData && starLangData.length > 0)
 
   useEffect(() => {
-    // starChart()
-    // createLangChart()
-    starLang()
+    if (langData.length && repoData.length) {
+      starChart()
+      createLangChart()
+      starLang()
+    }
   }, [])
 
-  return <div></div>
+  return (
+    <div className='chartmain'>
+      <div className='chartwrapper'>
+        <div className='chart'>
+          <header>
+            <h2>Most Starred</h2>
+          </header>
+          <div className='chart__container'>
+            {starError && <p>No data</p>}
+            <canvas id='starChart' width={chartSize} height={chartSize} />
+          </div>
+        </div>
+        <div className='chart'>
+          <header>
+            <h2>Languages Used</h2>
+          </header>
+          <div className='chart__container'>
+            {languageError && <p>No data</p>}
+            <canvas id='langChart' width={chartSize} height={chartSize} />
+          </div>
+        </div>
+        <div className='chart'>
+          <header>
+            <h2>Stars per Language</h2>
+          </header>
+          <div className='chart__container'>
+            {starLangError && <p>No data</p>}
+            <canvas id='starLangChart' width={chartSize} height={chartSize} />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default Charts

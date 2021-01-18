@@ -12,6 +12,7 @@ function Home() {
   const submission = (e) => {
     e.preventDefault()
     window.location.href = `/user/${user}`
+    document.getElementById('input').value = ''
   }
   return (
     <main className='front'>
@@ -26,6 +27,7 @@ function Home() {
             type='text'
             onChange={userInput}
             className='homeform__input'
+            id='input'
             placeholder='Enter Username'
           />
         </form>
