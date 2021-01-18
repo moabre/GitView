@@ -28,6 +28,7 @@ function UserInfo({ userData }) {
                 href={userData.html_url}
                 className='userInfo__link'
                 target='_blank'
+                rel='noreferrer'
               >
                 @{userData.login}
               </a>
