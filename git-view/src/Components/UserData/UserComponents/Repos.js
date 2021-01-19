@@ -40,12 +40,12 @@ const Repos = ({ repoData }) => {
     if (repoData.length) {
       filterRepos()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   useEffect(() => {
     filterRepos(repoType)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [repoType])
-
-  console.log(repo)
 
   const toggleDropDown = () => {
     setDropDown(!dropDown)
@@ -105,7 +105,7 @@ const Repos = ({ repoData }) => {
                     >
                       <div className='repo__top'>
                         <div className='repo__name'>
-                          <RepoForkedIcon size='small' />
+                          <RepoIcon size='small' />
                           <h3>{r.name}</h3>
                         </div>
                         <p>{r.description}</p>

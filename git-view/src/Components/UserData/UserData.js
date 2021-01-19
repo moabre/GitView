@@ -72,16 +72,23 @@ function UserData() {
     getUserInfo()
     getRepoInfo()
     getLanguageInfo()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <main>
-      <UserInfo userData={userData} />
-      {languageData && repoData && (
-        <Charts langData={languageData} repoData={repoData} />
+      {error && error.active ? (
+        <p>Seems like something went wrong</p>
+      ) : (
+        <>
+          {userData && <UserInfo userData={userData} />}
+          {languageData && repoData && (
+            <Charts langData={languageData} repoData={repoData} />
+          )}
+          {repoData && <Repos repoData={repoData} />}
+          <Footer />
+        </>
       )}
-      {repoData && <Repos repoData={repoData} />}
-      <Footer />
     </main>
   )
 }

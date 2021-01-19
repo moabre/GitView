@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ConstructCharts from '../UserComponents/ConstructChart'
 import { languageColors, backgroundColor, borderColor } from '../../Utils'
-import { RepoIcon } from '@primer/octicons-react'
 import './styles/Charts.scss'
 
 function Charts({ langData, repoData }) {
@@ -69,7 +68,6 @@ function Charts({ langData, repoData }) {
           `#${color.length > 4 ? color.slice(1) : color.slice(1).repeat(2)}B3`
       )
       const borderColor = langData.map((lang) => `${lang.color}`)
-      console.log(backgroundColor)
       const config = {
         ctx,
         chartType,
@@ -96,7 +94,6 @@ function Charts({ langData, repoData }) {
       (repo) => !repo.fork && repo.stargazers_count > 0
     )
     // getting all the unique languages from our filtered data
-    const nullLang = filteredRepo.filter((repo) => repo.language === 'HTML')
     const uniqueLang = new Set(filteredRepo.map((repo) => repo.language))
     //creating the labels for the donut chart
     const labels = [...uniqueLang].filter((l) => l)
@@ -146,6 +143,7 @@ function Charts({ langData, repoData }) {
       createLangChart()
       starLang()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
