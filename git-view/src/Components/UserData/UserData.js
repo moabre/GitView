@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import GhPolyGlot from 'gh-polyglot'
 import UserInfo from './UserComponents/UserInfo'
 import Charts from './UserComponents/Charts'
+import Repos from './UserComponents/Repos'
 
 function UserData() {
   //setting up the state values
@@ -78,6 +79,7 @@ function UserData() {
       {languageData && repoData && (
         <Charts langData={languageData} repoData={repoData} />
       )}
+      {repoData && <Repos repoData={repoData} />}
     </main>
   )
 }
