@@ -7,6 +7,7 @@ import {
   RepoForkedIcon,
   TriangleDownIcon,
 } from '@primer/octicons-react'
+import { languageColors } from '../../Utils'
 
 const Repos = ({ repoData }) => {
   //setting the state for the repo, repotype, and boolean for conditional rendering
@@ -27,7 +28,6 @@ const Repos = ({ repoData }) => {
     }
     //setting the sort type specific to the one passed in
     const sortType = type[filter]
-    console.log(sortType)
     //sorted data
     const sortedData = repoData
       .filter((r) => !r.fork)
@@ -44,6 +44,8 @@ const Repos = ({ repoData }) => {
   useEffect(() => {
     filterRepos(repoType)
   }, [repoType])
+
+  console.log(repo)
 
   const toggleDropDown = () => {
     setDropDown(!dropDown)
@@ -89,6 +91,58 @@ const Repos = ({ repoData }) => {
             </div>
           </div>
         </header>
+        <div className='repo-list'>
+          {repo.length > 0 ? (
+            <FlipMove typeName='ul'>
+              {repo.map((r) => {
+                return (
+                  <li key={r.id}>
+                    <a
+                      href={r.html_url}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='repo'
+                    >
+                      <div className='repo__top'>
+                        <div className='repo__name'>
+                          <RepoForkedIcon size='small' />
+                          <h3>{r.name}</h3>
+                        </div>
+                        <p>{r.description}</p>
+                      </div>
+                      <div className='repo__stats'>
+                        <div className='repo__stats--left'>
+                          <span>
+                            <div
+                              className='language'
+                              style={{
+                                backgroundColor: languageColors[r.language],
+                              }}
+                            />
+                            {r.language}
+                          </span>
+                          <span>
+                            <StarIcon size='small' />
+                            {r.stargazers_count}
+                          </span>
+                          <span>
+                            <RepoForkedIcon size='small' />
+                            {r.forks}
+                          </span>
+                        </div>
+                        <div className='repo__stats--right'>
+                          <span>{r.size} KB</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                )
+              })}
+            </FlipMove>
+          ) : (
+            <p>No available repositories!</p>
+          )}
+        </div>
       </div>
     </section>
   )

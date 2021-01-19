@@ -1,5 +1,10 @@
+//Importing Styles
+@use '../../../StylesVariables/variables' as *;
+@use '../../../StylesVariables/typography' as *;
+@use '../../../StylesVariables/mixins' as *;
+
 .header {
-  background-color: rgba(0, 0, 0, 0.904);
+  background-color: rgba(0, 0, 0);
   padding-top: 2rem;
   padding-bottom: 10rem;
   color: rgb(200, 225, 255);
@@ -48,6 +53,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @include tablet {
+    flex-direction: row;
+  }
 
   &__info {
     margin: 0px 1rem 0.5rem;
@@ -71,6 +79,6 @@
     text-align: center;
     padding: 1rem;
     border-radius: 0.25rem;
-    background-color: rgba(35, 41, 46);
+    background-color: rgb(56, 61, 66);
   }
 }
