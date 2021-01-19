@@ -62,7 +62,7 @@ const Repos = ({ repoData }) => {
     <section className='repos'>
       <div className='repocontainer'>
         <header className='repocontainer__header'>
-          <h2>Top Repos</h2>
+          <h2 className='repocontainer__title'>Top Repos</h2>
           <div className='dropdown'>
             <span className='dropdown__label'>by</span>
             <div className='dropwrapper'>

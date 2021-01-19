@@ -40,10 +40,28 @@
 .repocontainer {
   max-width: 1400px;
   margin: 0px auto;
+  padding: 2rem;
+
   &__header {
     display: flex;
     align-items: center;
     margin-bottom: 2rem;
+    margin-top: 2rem;
+    justify-content: left;
+    margin-left: 1rem;
+  }
+  &__title {
+    // border-bottom: dotted black 1px;
+    padding-bottom: 5px;
+    margin: 0;
+    background-image: linear-gradient(
+      to right,
+      black 33%,
+      rgba(255, 255, 255, 0) 0%
+    );
+    background-position: bottom;
+    background-size: 8px 1px;
+    background-repeat: repeat-x;
   }
 }
 .dropdown {

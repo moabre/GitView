@@ -4,6 +4,7 @@ import GhPolyGlot from 'gh-polyglot'
 import UserInfo from './UserComponents/UserInfo'
 import Charts from './UserComponents/Charts'
 import Repos from './UserComponents/Repos'
+import Footer from './UserComponents/Footer'
 
 function UserData() {
   //setting up the state values
@@ -80,6 +81,7 @@ function UserData() {
         <Charts langData={languageData} repoData={repoData} />
       )}
       {repoData && <Repos repoData={repoData} />}
+      <Footer />
     </main>
   )
 }
