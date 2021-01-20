@@ -31,6 +31,9 @@ function Home() {
             placeholder='Enter Username'
           />
         </form>
+        <button className='home__button' onClick={(e) => submission(e)}>
+          Search
+        </button>
       </div>
     </main>
   )
