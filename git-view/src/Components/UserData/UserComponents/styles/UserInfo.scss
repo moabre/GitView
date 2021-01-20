@@ -27,9 +27,9 @@
     color: rgb(200, 225, 255);
     margin: 1.5rem 1.5rem;
   }
-  // &__title {
-
-  // }
+  &__title > a {
+    color: rgb(0, 113, 243);
+  }
 }
 
 .avatar {
