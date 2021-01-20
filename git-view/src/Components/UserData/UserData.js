@@ -80,6 +80,7 @@ function UserData() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  console.log(error)
   return (
     <main>
       {error && error.active ? (
