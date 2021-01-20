@@ -11,7 +11,6 @@ import Error from './UserComponents/Error'
 function UserData() {
   //setting up the state values
   const { id } = useParams()
-  console.log(id)
   const [userData, setUserData] = useState(null)
   const [languageData, setLanguageData] = useState(null)
   const [repoData, setRepoData] = useState(null)
@@ -80,7 +79,6 @@ function UserData() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  console.log(error)
   return (
     <main>
       {error && error.active ? (
