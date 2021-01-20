@@ -86,14 +86,14 @@ function UserData() {
       {error && error.active ? (
         <Error error={error} />
       ) : (
-        <Error>
+        <>
           {userData && <UserInfo userData={userData} />}
           {languageData && repoData && (
             <Charts langData={languageData} repoData={repoData} />
           )}
           {repoData && <Repos repoData={repoData} />}
           <Footer />
-        </Error>
+        </>
       )}
     </main>
   )
