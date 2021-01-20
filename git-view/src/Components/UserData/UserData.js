@@ -7,6 +7,7 @@ import Repos from './UserComponents/Repos'
 import Footer from './UserComponents/Footer'
 import './UserComponents/styles/UserData.scss'
 import Error from './UserComponents/Error'
+import BackArrow from './UserComponents/BackArrow'
 
 function UserData() {
   //setting up the state values
@@ -85,6 +86,7 @@ function UserData() {
         <Error error={error} />
       ) : (
         <>
+          <BackArrow />
           {userData && <UserInfo userData={userData} />}
           {languageData && repoData && (
             <Charts langData={languageData} repoData={repoData} />

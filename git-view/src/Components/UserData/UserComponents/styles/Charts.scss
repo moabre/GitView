@@ -10,9 +10,10 @@
   gap: 2rem;
   justify-content: center;
   justify-items: center;
-  @include tablet {
+  @media (min-width: 746px) {
     justify-items: initial;
   }
+
   max-width: 1200px !important;
   margin-top: -8rem !important;
 }
