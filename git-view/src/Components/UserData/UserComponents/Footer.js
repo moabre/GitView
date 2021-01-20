@@ -31,11 +31,11 @@ const Footer = () => {
         </a>
         &middot;
         <a
-          href='https://www.styled-components.com/'
+          href='https://tsparticles.matteobruni.it/'
           target='_blank'
           rel='noopener noreferrer'
         >
-          Styled Components
+          tsparticles
         </a>
         &middot;
         <a
