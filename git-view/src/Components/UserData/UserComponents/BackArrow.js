@@ -8,13 +8,21 @@ function BackArrow() {
     console.log('here')
     window.location.href = `/`
   }
+  const gitProfile = () => {}
   return (
     <div className='back'>
       <button onClick={() => returnHome()} className='back__button'>
         <ArrowLeftIcon size='medium' className='back__arrow' />
       </button>
-
-      <img src={logo} alt='' className='back__img' />
+      <a
+        className='back__link'
+        href='https://github.com/moabre/GitView'
+        target='_blank'
+        rel='noopener noreferrer'
+        aria-label='View source on GitHub'
+      >
+        <img src={logo} alt='git logo' className='back__img' />
+      </a>
     </div>
   )
 }
