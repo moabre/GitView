@@ -5,10 +5,13 @@ import UserInfo from './UserComponents/UserInfo'
 import Charts from './UserComponents/Charts'
 import Repos from './UserComponents/Repos'
 import Footer from './UserComponents/Footer'
+import './UserComponents/styles/UserData.scss'
+import Error from './UserComponents/Error'
 
 function UserData() {
   //setting up the state values
   const { id } = useParams()
+  console.log(id)
   const [userData, setUserData] = useState(null)
   const [languageData, setLanguageData] = useState(null)
   const [repoData, setRepoData] = useState(null)
@@ -32,6 +35,7 @@ function UserData() {
         setUserData(json)
       })
       .catch((err) => {
+        console.log(err)
         setError({
           active: true,
           type: 400,
@@ -43,6 +47,7 @@ function UserData() {
     const lang = new GhPolyGlot(`${id}`)
     lang.userStats((error, response) => {
       if (error) {
+        console.log(error)
         setError({ active: true, type: 400 })
       }
       setLanguageData(response)
@@ -64,10 +69,10 @@ function UserData() {
       })
       .then((json) => setRepoData(json))
       .catch((err) => {
+        console.log(err)
         setError({ active: true, type: 200 })
       })
   }
-
   useEffect(() => {
     getUserInfo()
     getRepoInfo()
@@ -78,16 +83,16 @@ function UserData() {
   return (
     <main>
       {error && error.active ? (
-        <p>Seems like something went wrong</p>
+        <Error error={error} />
       ) : (
-        <>
+        <Error>
           {userData && <UserInfo userData={userData} />}
           {languageData && repoData && (
             <Charts langData={languageData} repoData={repoData} />
           )}
           {repoData && <Repos repoData={repoData} />}
           <Footer />
-        </>
+        </Error>
       )}
     </main>
   )
