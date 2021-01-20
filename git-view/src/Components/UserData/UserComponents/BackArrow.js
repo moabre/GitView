@@ -8,7 +8,6 @@ function BackArrow() {
     console.log('here')
     window.location.href = `/`
   }
-  const gitProfile = () => {}
   return (
     <div className='back'>
       <button onClick={() => returnHome()} className='back__button'>
